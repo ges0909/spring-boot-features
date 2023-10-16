@@ -1,0 +1,13 @@
+spring:
+  main:
+    # web-application-type: NONE
+    banner-mode: off
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+    packages:
+      trust-all: true
+
+logging:
+  config: file:./src/main/resources/logback.xml
