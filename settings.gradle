@@ -4,4 +4,5 @@ include 'command-line-runner'
 include 'conditional'
 include 'properties'
 include 'depends-on'
+include 'retryable-recover'
 
