@@ -36,7 +36,7 @@ public class MainApplication {
     }
 
     @PostConstruct
-    private void postConstruct() {
+    void postConstruct() {
         log.info("Hostname = {}", configProperties.hostName());
         log.info("Port = {}", configProperties.port());
         log.info("From = {}", configProperties.from());

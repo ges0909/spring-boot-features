@@ -3,4 +3,5 @@ rootProject.name = 'spring-boot-features'
 include 'command-line-runner'
 include 'conditional'
 include 'properties'
+include 'depends-on'
 

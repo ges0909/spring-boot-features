@@ -1,0 +1,8 @@
+component.a: true # logging service
+component.b: true # env controller
+
+management.endpoints.web.exposure.include: [ health, beans ]
+spring.security.user.name: test
+spring.security.user.password: test
+
+spring.task.scheduling.pool.size: 10
