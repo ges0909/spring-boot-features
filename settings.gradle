@@ -6,4 +6,4 @@ include 'properties'
 include 'depends-on'
 include 'retryable-recover'
 include 'messaging'
-
+include 'mock-server'

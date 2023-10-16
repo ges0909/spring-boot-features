@@ -1,18 +1,14 @@
 package com.valantic.sti;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.boot.autoconfigure.*;
+import org.springframework.boot.builder.*;
+import org.springframework.context.*;
 
 @SpringBootApplication
 public class MainApplication {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MainApplication.class);
-
-    final private ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext;
 
     @Autowired
     public MainApplication(ApplicationContext applicationContext) {
