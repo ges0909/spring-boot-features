@@ -1,0 +1,12 @@
+spring:
+  main:
+    banner-mode: console
+
+logging:
+  file.name: logs/app.log
+  pattern:
+    console: "%yellow(%d) %highlight(%-5level) %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework: INFO
+    com.valantic.sti: DEBUG

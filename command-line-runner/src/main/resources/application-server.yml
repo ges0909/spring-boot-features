@@ -1,0 +1,3 @@
+spring:
+  banner:
+    location: server_banner.txt
