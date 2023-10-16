@@ -1,0 +1,31 @@
+# simple
+mail.hostname: host@mail.com
+mail.port: 9000
+mail.from: mailer@mail.com
+
+# list
+mail.defaultRecipients: [ admin@mail.com, owner@mail.com ]
+
+# map
+mail.additionalHeaders: { redelivery: true, secure: true }
+
+# object
+mail.credentials.username: john
+mail.credentials.password: password
+mail.credentials.authMethod: SHA1
+
+# bean
+item.a: Gerrit
+item.b: 9
+item.c: false
+
+# conversion
+conversion.timeInDefaultUnit: 10
+conversion.timeInNano: 9ns
+conversion.sizeInDefaultUnit: 300
+conversion.sizeInGB: 2GB # B, KB, MB, GB, and TB
+conversion.sizeInTB: 4
+conversion.employee: john,2000
+
+# @Value
+person.firstname: Gerrit
