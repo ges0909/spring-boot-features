@@ -10,7 +10,7 @@ import com.valantic.sti.apps.ServerApplication;
 
 public class MainApplication {
 
-    static final Logger logger = LoggerFactory.getLogger(MainApplication.class);
+    static final Logger LOGGER = LoggerFactory.getLogger(MainApplication.class);
 
     public static void main(final String... args) {
         final String command = Stream.of(args).findFirst().orElse("server");
@@ -20,7 +20,7 @@ public class MainApplication {
             // case "import" -> ImportApplication.main(remainingArgs);
             case "server" -> SpringApplication.from(ServerApplication::main).run(remainingArgs);
             case "import" -> SpringApplication.from(ImportApplication::main).run(remainingArgs);
-            default -> logger.error("Unknown command '{}'", command);
+            default -> LOGGER.error("Unknown command '{}'", command);
         }
     }
 }

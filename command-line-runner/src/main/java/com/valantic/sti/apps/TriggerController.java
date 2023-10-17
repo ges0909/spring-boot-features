@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TriggerController {
 
-    private static final Logger logger = LoggerFactory.getLogger(TriggerController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TriggerController.class);
 
     @GetMapping("/trigger")
     @ResponseBody
     public String trigger(@RequestParam final String ref) {
-        logger.info("'{}' triggered", ref);
+        LOGGER.info("'{}' triggered", ref);
         return "triggered";
     }
 }

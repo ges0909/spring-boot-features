@@ -16,28 +16,28 @@ import org.springframework.context.event.EventListener;
 @SpringBootApplication
 public class ServerApplication implements CommandLineRunner, ApplicationRunner {
 
-    private static final Logger logger = LoggerFactory.getLogger(ServerApplication.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ServerApplication.class);
 
     public static void main(final String... args) {
         final var app = new SpringApplication(ServerApplication.class);
         app.setAdditionalProfiles("server");
         final ConfigurableApplicationContext context = app.run(args);
         // get all instantiated beans
-        logger.trace(String.join("\n", context.getBeanDefinitionNames()));
+        LOGGER.trace(String.join("\n", context.getBeanDefinitionNames()));
     }
 
     @Override
     public void run(final String... args) {
-        logger.info("command line runner: SERVER");
+        LOGGER.info("command line runner: SERVER");
     }
 
     @Override
     public void run(final ApplicationArguments args) throws Exception {
-        logger.info("application runner: SERVER, args={}", args);
+        LOGGER.info("application runner: SERVER, args={}", args);
     }
 
     @EventListener(ApplicationReadyEvent.class)
     public void onApplicationReady() {
-        logger.info("application ready event: SERVER");
+        LOGGER.info("application ready event: SERVER");
     }
 }
