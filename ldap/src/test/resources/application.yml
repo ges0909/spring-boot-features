@@ -1,0 +1,11 @@
+ldap:
+  partitionSuffix: dc=example,dc=com
+  partition: example
+  principal: uid=admin,ou=system
+  password: secret
+  ldiffile: 'classpath:./test-ldap-data.ldif'
+  port: 18888
+  # ldap client
+  url: ldap://localhost:18889
+  base: dc=example,dc=com
+  username: uid=admin,ou=system

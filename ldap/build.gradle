@@ -24,9 +24,10 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-ldap'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    // implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.boot:spring-boot-starter-ldap-test' // provides embedded ldap server
+    // provides an embedded LDAP server based on 'ApacheDS' or 'UnboundID'
+    testImplementation 'org.springframework.ldap:spring-ldap-test'
+    testImplementation 'com.unboundid:unboundid-ldapsdk'
 }
 
 tasks.named('test') {

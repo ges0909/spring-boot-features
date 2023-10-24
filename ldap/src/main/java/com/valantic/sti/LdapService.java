@@ -4,7 +4,6 @@ import org.springframework.ldap.core.AttributesMapper;
 import org.springframework.ldap.core.DirContextAdapter;
 import org.springframework.ldap.core.DirContextOperations;
 import org.springframework.ldap.core.LdapTemplate;
-import org.springframework.ldap.core.support.LdapContextSource;
 import org.springframework.ldap.support.LdapNameBuilder;
 import org.springframework.stereotype.Service;
 
@@ -17,23 +16,22 @@ import java.util.List;
 @Service
 public class LdapService {
 
-    final private LdapTemplate ldapTemplate;
-    private final LdapConfig ldapConfig;
-    private final LdapContextSource ldapContextSource;
+    private final LdapTemplate ldapTemplate;
 
-    public LdapService(LdapTemplate ldapTemplate, LdapConfig ldapConfig, LdapContextSource ldapContextSource) {
+    public LdapService(LdapTemplate ldapTemplate) {
         this.ldapTemplate = ldapTemplate;
-        this.ldapConfig = ldapConfig;
-        this.ldapContextSource = ldapContextSource;
     }
 
-    public void authenticate(String username, String password) {
-        ldapContextSource
-                .getContext(
-                        "cn=" +
-                                username +
-                                ",ou=users," +
-                                ldapConfig.base(), password);
+    /**
+     * @param username
+     * @return
+     */
+    public List<String> search(String username) {
+        return ldapTemplate
+                .search(
+                        "ou=users",
+                        "cn=" + username,
+                        (AttributesMapper<String>) attrs -> (String) attrs.get("cn").get());
     }
 
     /**
@@ -84,18 +82,6 @@ public class LdapService {
         context.setAttributeValue("userPassword",
                 digestSHA(password));
         ldapTemplate.modifyAttributes(context);
-    }
-
-    /**
-     * @param username
-     * @return
-     */
-    public List<String> search(String username) {
-        return ldapTemplate
-                .search(
-                        "ou=users",
-                        "cn=" + username,
-                        (AttributesMapper<String>) attrs -> (String) attrs.get("cn").get());
     }
 
     /**
