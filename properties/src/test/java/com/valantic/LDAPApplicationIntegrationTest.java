@@ -1,10 +1,10 @@
 package com.valantic;
 
-import com.valantic.sti.LDAPApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 // @SpringBootTest
@@ -15,9 +15,9 @@ class LDAPApplicationIntegrationTest {
     // https://www.jvt.me/posts/2021/06/25/spring-context-test/
     private final ApplicationContext applicationContext;
 
-    private final LDAPApplication mainApplication;
+    private final MainApplication mainApplication;
 
-    public LDAPApplicationIntegrationTest(ApplicationContext applicationContext, LDAPApplication mainApplication) {
+    public LDAPApplicationIntegrationTest(ApplicationContext applicationContext, MainApplication mainApplication) {
         this.applicationContext = applicationContext;
         this.mainApplication = mainApplication;
     }
