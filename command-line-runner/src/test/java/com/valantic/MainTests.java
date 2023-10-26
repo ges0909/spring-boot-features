@@ -1,4 +1,4 @@
-package com.valantic.apps;
+package com.valantic;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

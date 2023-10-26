@@ -1,4 +1,4 @@
-package com.valantic.apps;
+package com.valantic;
 
 import com.valantic.sti.LDAPApplication;
 import org.junit.jupiter.api.Test;
@@ -7,14 +7,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest()
-@TestPropertySource(properties = "person.firstName=Vinzenz")
-public class TestPropertySourceAnnotationPropertyTest {
+@TestPropertySource("classpath:application-test.yml")
+public class TestPropertySourceAnnotationClasspathTest {
 
     @Autowired
     LDAPApplication mainApplication;
 
     @Test
     void testPropertyValue() {
-        assertEquals("Vinzenz", mainApplication.firstName);
+        assertEquals("Heike", mainApplication.firstName);
     }
 }

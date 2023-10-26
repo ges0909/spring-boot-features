@@ -1,4 +1,4 @@
-package com.valantic.apps;
+package com.valantic;
 
 import com.valantic.sti.LDAPApplication;
 import org.junit.jupiter.api.Test;
