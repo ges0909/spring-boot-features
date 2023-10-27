@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest()
 @TestPropertySource(properties = "person.firstName=Vinzenz")
-public class TestPropertySourceAnnotationPropertyTest {
+class TestPropertySourceAnnotationPropertyTest {
 
     @Autowired
     MainApplication mainApplication;

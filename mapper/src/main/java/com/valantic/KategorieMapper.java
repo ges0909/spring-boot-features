@@ -1,5 +1,6 @@
 package com.valantic;
 
+
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
