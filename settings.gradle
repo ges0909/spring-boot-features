@@ -1,6 +1,6 @@
 rootProject.name = 'spring-boot-features'
 
-include 'command-line-runner'
+include 'cmdline-runner'
 include 'conditional'
 include 'dataclass-utils'
 include 'properties'
