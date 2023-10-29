@@ -1,7 +1,7 @@
 package com.valantic;
 
 import jakarta.persistence.EntityManagerFactory;
-import org.jetbrains.annotations.NotNull;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -15,6 +15,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.annotation.Validated;
 
 import javax.sql.DataSource;
 
@@ -23,10 +24,11 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "mockServerEntityManagerFactory",
         transactionManagerRef = "mockServerTransactionManager",
-        basePackages = {"com.valantic.sti.model"}
+        basePackages = {"com.valantic"}
 )
 @EnableJpaAuditing
 @ConditionalOnProperty(name = "mockserver.enabled", matchIfMissing = true)
+@Validated
 public class PersistenceConfig {
     @Bean(name = "mockServerProperties")
     @ConfigurationProperties("spring.datasource.mockserver")
@@ -44,7 +46,7 @@ public class PersistenceConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(
             final @NotNull EntityManagerFactoryBuilder builder, @Qualifier("mockServerDatasource") final DataSource dataSource) {
         return builder.dataSource(dataSource)
-                .packages("com.valantic.sti.model")
+                .packages("com.valantic")
                 .persistenceUnit("mockServer")
                 .build();
     }
