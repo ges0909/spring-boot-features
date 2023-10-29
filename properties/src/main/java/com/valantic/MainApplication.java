@@ -11,7 +11,7 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 @SpringBootApplication
 // @EnableConfigurationProperties(ConfigProperties.class) // variant 1
-@ConfigurationPropertiesScan("com.valantic.sti") // variant 2
+@ConfigurationPropertiesScan("com.valantic") // variant 2
 public class MainApplication {
 
     private final Logger log = LoggerFactory.getLogger(MainApplication.class);

@@ -10,4 +10,4 @@ spring:
       trust-all: true
 
 logging:
-  config: file:./src/main/resources/logback.xml
+  config: file:./messaging/src/main/resources/logback.xml

@@ -39,7 +39,7 @@
     </root>
 
     <!-- LOG "com.baeldung*" at TRACE level -->
-    <logger name="com.baeldung" level="trace" additivity="false">
+    <logger name="com.valantic" level="trace" additivity="false">
         <appender-ref ref="MockServerRollingFile"/>
         <appender-ref ref="Console"/>
     </logger>

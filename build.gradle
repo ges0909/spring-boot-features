@@ -1,0 +1,5 @@
+tasks.register('deleteLogs', Delete) {
+    delete fileTree(dir: "$rootDir").matching {
+        include '**/logs'
+    }
+}
