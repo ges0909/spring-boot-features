@@ -16,17 +16,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Testcontainers
 @SpringBootTest
-class ApplicationTests {
+class MainApplicationIntegrationTest {
 
     @Container
-    public static PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:latest")
+    // false positive warning: https://stackoverflow.com/questions/47959505/how-to-get-the-suppresswarnings-warning-name-for-an-intellij-warning
+    private static final PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:latest")
             .withUsername("gerrit")
             .withPassword("develop")
             .withDatabaseName("testdb");
+
     private final BookRepository bookRepository;
 
     @Autowired
-    ApplicationTests(final BookRepository bookRepository) {
+    MainApplicationIntegrationTest(final BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
@@ -36,22 +38,6 @@ class ApplicationTests {
         registry.add("spring.datasource.username", container::getUsername);
         registry.add("spring.datasource.password", container::getPassword);
     }
-
-//    @Test
-//    void autonomousTest() {
-//        try (final PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:latest")
-//                .withUsername("gerrit")
-//                .withPassword("develop")
-//                .withDatabaseName("testdb");
-//        ) {
-//            final Book book = new Book();
-//            book.setName("Testcontainers");
-//            bookRepository.save(book);
-//            final Optional<Book> actual = bookRepository.findByName("Testcontainers");
-//            assertTrue(actual.isPresent());
-//            assertEquals("Testcontainers", actual.get().getName())
-//        }
-//    }
 
     @Test
     void saveBook() {
