@@ -16,22 +16,31 @@ mail.additionalHeaders: {
 }
 
 # object (record)
-mail.credentials.username: john
-mail.credentials.password: password
-mail.credentials.authMethod: SHA1
+mail:
+  credentials:
+    username: john
+    password: password
+    authMethod: SHA1
 
 # bean
-item.a: Gerrit
-item.b: 9
-item.c: false
+item:
+  a: Gerrit
+  b: 9
+  c: false
 
 # conversion
-conversion.timeInDefaultUnit: 10
-conversion.timeInNano: 9ns
-conversion.sizeInDefaultUnit: 300
-conversion.sizeInGB: 2GB # B, KB, MB, GB, and TB
-conversion.sizeInTB: 4
-conversion.employee: john,2000
+conversion:
+  timeInDefaultUnit: 10
+  timeInNano: 9ns
+  sizeInDefaultUnit: 300
+  sizeInGB: 2GB # B, KB, MB, GB, and TB
+  sizeInTB: 4
+  employee: john,2000
 
 # @Value
-person.firstname: Gerrit
+person:
+  firstname: Gerrit
+
+spring:
+  config:
+    import: optional:secrets.properties
