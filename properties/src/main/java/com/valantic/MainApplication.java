@@ -14,7 +14,7 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 @ConfigurationPropertiesScan("com.valantic") // variant 2
 public class MainApplication {
 
-    private final Logger log = LoggerFactory.getLogger(MainApplication.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MainApplication.class);
 
     private final ConfigProperties configProperties;
     private final PropertyConversion propertyConversion;
@@ -39,17 +39,17 @@ public class MainApplication {
 
     @PostConstruct
     void postConstruct() {
-        log.info("Hostname = {}", configProperties.hostName());
-        log.info("Port = {}", configProperties.port());
-        log.info("From = {}", configProperties.from());
-        log.info("DefaultRecipients = {}", configProperties.defaultRecipients());
-        log.info("AdditionalHeaders = {}", configProperties.additionalHeaders());
-        log.info("Credentials = {} {} {}",
+        LOGGER.info("Hostname = {}", configProperties.hostName());
+        LOGGER.info("Port = {}", configProperties.port());
+        LOGGER.info("From = {}", configProperties.from());
+        LOGGER.info("DefaultRecipients = {}", configProperties.defaultRecipients());
+        LOGGER.info("AdditionalHeaders = {}", configProperties.additionalHeaders());
+        LOGGER.info("Credentials = {} {} {}",
                 configProperties.credentials().authMethod(),
                 configProperties.credentials().username(),
                 configProperties.credentials().password()
         );
-        log.info("Conversion = {} {} {} {} {} {} {}",
+        LOGGER.info("Conversion = {} {} {} {} {} {} {}",
                 propertyConversion.timeInDefaultUnit(),
                 propertyConversion.timeInNano(),
                 propertyConversion.sizeInDefaultUnit(),
@@ -58,6 +58,6 @@ public class MainApplication {
                 propertyConversion.employee().name(),
                 propertyConversion.employee().salary()
         );
-        log.info("Item = {} {} {}", item.getA(), item.getB(), item.isC());
+        LOGGER.info("Item = {} {} {}", item.getA(), item.getB(), item.isC());
     }
 }
