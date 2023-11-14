@@ -4,12 +4,18 @@ mail.port: 9000
 mail.from: mailer@mail.com
 
 # list
-mail.defaultRecipients: [ admin@mail.com, owner@mail.com ]
+mail.defaultRecipients: [
+  admin@mail.com,
+  owner@mail.com
+]
 
 # map
-mail.additionalHeaders: { redelivery: true, secure: true }
+mail.additionalHeaders: {
+  redelivery: true,
+  secure: true
+}
 
-# object
+# object (record)
 mail.credentials.username: john
 mail.credentials.password: password
 mail.credentials.authMethod: SHA1

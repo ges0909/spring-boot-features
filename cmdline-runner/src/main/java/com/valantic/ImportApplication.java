@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ExitCodeExceptionMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -32,7 +33,15 @@ public class ImportApplication {
     }
 
     @Bean
-        // this works because @SpringBootApplication is also a @Configuration class
+    ExitCodeExceptionMapper exitCodeExceptionMapper() {
+        return exception -> {
+            LOGGER.error(exception.getMessage());
+            return 61;
+        };
+    }
+
+    // this works because @SpringBootApplication is also a @Configuration class
+    @Bean
     CommandLineRunner commandLineRunner() {
         LOGGER.info("command line runner: IMPORT");
         return args -> {

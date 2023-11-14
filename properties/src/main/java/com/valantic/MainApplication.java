@@ -18,14 +18,16 @@ public class MainApplication {
 
     private final ConfigProperties configProperties;
     private final PropertyConversion propertyConversion;
+    private final Item item;
 
     @Value("${person.firstname:unknown}")
     public String firstName;
 
     @Autowired
-    public MainApplication(final ConfigProperties configProperties, final PropertyConversion propertyConversion) {
+    public MainApplication(final ConfigProperties configProperties, final PropertyConversion propertyConversion, Item item) {
         this.configProperties = configProperties;
         this.propertyConversion = propertyConversion;
+        this.item = item;
     }
 
     /**
@@ -56,5 +58,6 @@ public class MainApplication {
                 propertyConversion.employee().name(),
                 propertyConversion.employee().salary()
         );
+        log.info("Item = {} {} {}", item.getA(), item.getB(), item.isC());
     }
 }
