@@ -9,22 +9,28 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = {HelloController.class})
+// start full Spring application context but without the server
+// @SpringBootTest
+// @AutoConfigureMockMvc(addFilters = false) // injects 'MockMvc'
+
+// narrow the tests to only the web layer
+@WebMvcTest(controllers = {HelloController.class}, excludeFilters = {})
 class HelloControllerTest {
 
     @Autowired
     MockMvc mockMvc;
 
     @Test
-    void shouldReturnOk() throws Exception {
-        mockMvc.perform(get("/hello/Heike"))
+    void shouldReturnHello() throws Exception {
+        mockMvc.perform(get("/hello"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Hello, Heike"));
+                .andExpect(content().string("Hello"));
     }
 
     @Test
-    void shouldReturnBadRequest() throws Exception {
-        mockMvc.perform(get("/hello/throw"))
-                .andExpect(status().isBadRequest());
+    void shouldReturnHelloWithName() throws Exception {
+        mockMvc.perform(get("/hello/Heike"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Hello, Heike"));
     }
 }
