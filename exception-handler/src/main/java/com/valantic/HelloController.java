@@ -18,11 +18,6 @@ public class HelloController {
                 .body(e.getMessage());
     }
 
-    @GetMapping("/hello")
-    String hello() {
-        return "Hello";
-    }
-
     @GetMapping("/hello/{name}")
     String hello(@PathVariable String name) throws MissingRequestValueException {
         if (name.equals("throw")) {

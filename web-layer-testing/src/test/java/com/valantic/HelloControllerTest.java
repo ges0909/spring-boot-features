@@ -9,29 +9,32 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = {HelloController.class})
-public class HelloControllerTest {
+/**
+ * Web Layer Testing
+ */
+
+// start full Spring application context but without the server
+// @SpringBootTest
+// @AutoConfigureMockMvc(addFilters = false) // injects 'MockMvc'
+
+// narrow the tests to only the web layer
+@WebMvcTest(controllers = {HelloController.class}, excludeFilters = {})
+class HelloControllerTest {
 
     @Autowired
-    private MockMvc mvc;
+    private MockMvc mockMvc;
 
     @Test
-    void whenRequestHello_thenReturnHello() throws Exception {
-        mvc.perform(get("/hello"))
+    void shouldReturnHello() throws Exception {
+        mockMvc.perform(get("/hello"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello"));
     }
 
     @Test
-    void whenRequestHelloWithName_thenReturnHelloWithName() throws Exception {
-        mvc.perform(get("/hello/Heike"))
+    void shouldReturnHelloWithName() throws Exception {
+        mockMvc.perform(get("/hello/Heike"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello, Heike"));
-    }
-
-    @Test
-    void whenRequestHelloWithName_thenReturnBadRequest() throws Exception {
-        mvc.perform(get("/hello/throw"))
-                .andExpect(status().isBadRequest());
     }
 }
