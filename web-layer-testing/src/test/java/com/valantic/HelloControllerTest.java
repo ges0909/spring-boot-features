@@ -9,10 +9,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * Web Layer Testing
- */
-
 // start full Spring application context but without the server
 // @SpringBootTest
 // @AutoConfigureMockMvc(addFilters = false) // injects 'MockMvc'
@@ -22,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class HelloControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @Test
     void shouldReturnHello() throws Exception {
