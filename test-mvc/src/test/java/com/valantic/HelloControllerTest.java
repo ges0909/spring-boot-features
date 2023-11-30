@@ -13,12 +13,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-// start full Spring application context but without the server
+// 1. starts full Spring application context but without the server
+
 // @SpringBootTest(classes = {HelloController.class})
 // @AutoConfigureMockMvc(addFilters = false) // injects 'MockMvc'
 // @EnableWebMvc
 
-// narrow the tests to only the web layer
+// 2. narrows the tests to only the web layer
 @WebMvcTest(controllers = {HelloController.class})
 class HelloControllerTest {
 

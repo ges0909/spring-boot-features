@@ -23,3 +23,14 @@ Ref. [Features That Every Developer Must Know About Spring Boot](https://blog.de
 - [Roadmap for Spring Boot Developer](https://roadmap.sh/spring-boot)
 - [Next-Generation Cloud Native Apps with Spring Boot 3](https://yewtu.be/watch?v=a5qfg9ybltM)
 
+## Test Slices
+
+| Layer              | Annotation      |
+|--------------------|-----------------|
+| Web layer          | @WebMvcTest     |
+| JPA Components     | @DataJpaTest    |
+| JDBC Access        | @JdbcTest       |
+| MongoDB Access     | @DataMongoTest  |
+| JSON Serialization | @JsonTest       |
+| HTTP Clients       | @RestClientTest |
+| Entire application | @SpringBootTest |
