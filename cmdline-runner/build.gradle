@@ -29,6 +29,7 @@ springBoot {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0' // open api
+    implementation 'org.springframework.boot:spring-boot-devtools' // add shortcut Ctrl+S to Build | Build project
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
