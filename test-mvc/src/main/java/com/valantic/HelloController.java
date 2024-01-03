@@ -44,10 +44,10 @@ public class HelloController {
         return "Hello, " + name;
     }
 
-    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/echo", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    Credentials login(@RequestBody @Valid Credentials credentials) {
-        logger.info("RequestBody: {}", credentials);
-        return credentials;
+    Person login(@RequestBody @Valid Person person) {
+        logger.info("{}", person);
+        return person;
     }
 }
