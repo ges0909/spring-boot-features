@@ -8,13 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Stream;
 
@@ -35,18 +29,18 @@ public class EchoController {
     }
 
     @GetMapping
-    String hello() {
+    String echo() {
         return "Hello";
     }
 
     @GetMapping("/{name}")
-    String hello(@PathVariable String name) {
+    String echo(@PathVariable String name) {
         return "Hello, " + name;
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
         // @ResponseBody
-    ResponseEntity<Person> login(@RequestBody @Valid Person person, BindingResult bindingResult) {
+    ResponseEntity<Person> echo(@RequestBody @Valid Person person, BindingResult bindingResult) {
         if (bindingResult.hasFieldErrors()) {
             bindingResult.getFieldErrors().forEach(error -> logger.error("{}: {}", error.getField().toUpperCase(), error.getDefaultMessage()));
             return ResponseEntity
