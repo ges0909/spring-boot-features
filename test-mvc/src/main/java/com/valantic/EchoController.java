@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping("/hello")
-public class HelloController {
+@RequestMapping("/echo")
+public class EchoController {
 
-    private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
+    private static final Logger logger = LoggerFactory.getLogger(EchoController.class);
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
@@ -44,7 +44,7 @@ public class HelloController {
         return "Hello, " + name;
     }
 
-    @PostMapping(value = "/echo", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     Person login(@RequestBody @Valid Person person) {
         logger.info("{}", person);

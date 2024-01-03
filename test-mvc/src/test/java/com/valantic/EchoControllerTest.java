@@ -23,22 +23,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 // @EnableWebMvc
 
 // 2. narrows the tests to only the web layer
-@WebMvcTest(controllers = {HelloController.class})
-class HelloControllerTest {
+@WebMvcTest(controllers = {EchoController.class})
+class EchoControllerTest {
 
     @Autowired
     MockMvc mockMvc;
 
     @Test
     void shouldReturnHello() throws Exception {
-        mockMvc.perform(get("/hello"))
+        mockMvc.perform(get("/echo"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello"));
     }
 
     @Test
     void shouldReturnHelloWithName() throws Exception {
-        mockMvc.perform(get("/hello/Heike"))
+        mockMvc.perform(get("/echo/Heike"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello, Heike"));
     }
@@ -52,7 +52,7 @@ class HelloControllerTest {
                     "age": 25
                 }
                 """;
-        mockMvc.perform(post("/hello/echo")
+        mockMvc.perform(post("/echo")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(credentials))
                 .andExpect(status().isOk());
@@ -80,7 +80,7 @@ class HelloControllerTest {
                     """
     })
     void whenValidationFailsShouldReturnBadRequest(String credentials) throws Exception {
-        mockMvc.perform(post("/hello/echo")
+        mockMvc.perform(post("/echo")
                         .accept(MediaType.APPLICATION_JSON_VALUE)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(credentials))
