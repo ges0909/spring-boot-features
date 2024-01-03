@@ -1,6 +1,8 @@
 package com.valantic;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
@@ -9,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.nio.charset.StandardCharsets;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -41,8 +44,44 @@ class HelloControllerTest {
     }
 
     @Test
+    void whenValidationSucceedsShouldReturnOk() throws Exception {
+        final String jsonContent = """
+                {
+                    "username": "gerrit",
+                    "password": "secret"
+                }
+                """;
+        mockMvc.perform(post("/hello/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonContent))
+                .andExpect(status().isOk());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            """
+                    {
+                         "username": "gerrit",
+                         "password": ""
+                     }
+                     """,
+            """
+                    {
+                        "username": "gerrit"
+                    }
+                    """
+    })
+    void whenValidationFailsShouldReturnBadRequest(String content) throws Exception {
+        mockMvc.perform(post("/hello/login")
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(content))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void testChangeInitialPassword() throws Exception {
-        mockMvc.perform(put("/isbpn-client-v1/bediener-verwaltung/initialpasswort-vergeben/{id}", 123L)
+        mockMvc.perform(put("/notfound/{id}", 123L)
                         .param("sessionId", "test")
                         .param("benutzerkennung", "test")
                         .param("bedienplatz", "test")
