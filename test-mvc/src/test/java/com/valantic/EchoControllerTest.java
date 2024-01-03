@@ -1,10 +1,13 @@
 package com.valantic;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.system.CapturedOutput;
+import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -24,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 // 2. narrows the tests to only the web layer
 @WebMvcTest(controllers = {EchoController.class})
+@ExtendWith(OutputCaptureExtension.class)
 class EchoControllerTest {
 
     @Autowired
@@ -79,7 +83,7 @@ class EchoControllerTest {
                     }
                     """
     })
-    void whenValidationFailsShouldReturnBadRequest(String credentials) throws Exception {
+    void whenValidationFailsShouldReturnBadRequest(String credentials, CapturedOutput output) throws Exception {
         mockMvc.perform(post("/echo")
                         .accept(MediaType.APPLICATION_JSON_VALUE)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
