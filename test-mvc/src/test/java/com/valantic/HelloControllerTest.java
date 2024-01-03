@@ -45,7 +45,7 @@ class HelloControllerTest {
 
     @Test
     void whenValidationSucceedsShouldReturnOk() throws Exception {
-        final String jsonContent = """
+        final String credentials = """
                 {
                     "username": "gerrit",
                     "password": "secret"
@@ -53,7 +53,7 @@ class HelloControllerTest {
                 """;
         mockMvc.perform(post("/hello/login")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonContent))
+                        .content(credentials))
                 .andExpect(status().isOk());
     }
 
@@ -67,15 +67,21 @@ class HelloControllerTest {
                      """,
             """
                     {
+                        "username": "",
+                        "password": ""
+                    }
+                    """,
+            """
+                    {
                         "username": "gerrit"
                     }
                     """
     })
-    void whenValidationFailsShouldReturnBadRequest(String content) throws Exception {
+    void whenValidationFailsShouldReturnBadRequest(String credentials) throws Exception {
         mockMvc.perform(post("/hello/login")
                         .accept(MediaType.APPLICATION_JSON_VALUE)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(content))
+                        .content(credentials))
                 .andExpect(status().isBadRequest());
     }
 

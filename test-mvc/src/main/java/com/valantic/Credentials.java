@@ -2,9 +2,11 @@ package com.valantic;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class LoginRequest {
+public class Credentials {
+    @NotBlank(message = "Darf nicht leer sein.")
     private String username;
-    @NotBlank
+
+    @NotBlank(message = "{password.not_empty}")
     private String password;
 
     public String getUsername() {

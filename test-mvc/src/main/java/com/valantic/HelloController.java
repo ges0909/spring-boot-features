@@ -46,8 +46,8 @@ public class HelloController {
 
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    LoginRequest login(@RequestBody @Valid LoginRequest loginRequest) {
-        logger.info("RequestBody: {}", loginRequest);
-        return loginRequest;
+    Credentials login(@RequestBody @Valid Credentials credentials) {
+        logger.info("RequestBody: {}", credentials);
+        return credentials;
     }
 }
