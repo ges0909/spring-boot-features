@@ -86,7 +86,7 @@ class EchoControllerTest {
     void whenValidationFailsThenReturnBadRequest(String person, CapturedOutput output) throws Exception {
         mockMvc.perform(post("/echo")
                         // .header("Accept-Language", "de-DE")
-                        // .header("Accept-Language", "it-IT")
+                        .header("Accept-Language", "it-IT")
                         // .header("Accept-Language", "en-US")
                         .accept(MediaType.APPLICATION_JSON_VALUE)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)

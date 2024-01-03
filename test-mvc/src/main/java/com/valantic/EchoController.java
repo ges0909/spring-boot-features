@@ -48,7 +48,7 @@ public class EchoController {
         // @ResponseBody
     ResponseEntity<Person> login(@RequestBody @Valid Person person, BindingResult bindingResult) {
         if (bindingResult.hasFieldErrors()) {
-            bindingResult.getFieldErrors().forEach(error -> logger.error("{}: {}", error.getField(), error.getDefaultMessage()));
+            bindingResult.getFieldErrors().forEach(error -> logger.error("{}: {}", error.getField().toUpperCase(), error.getDefaultMessage()));
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(person);
