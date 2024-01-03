@@ -48,8 +48,8 @@ class EchoControllerTest {
     }
 
     @Test
-    void whenValidationSucceedsShouldReturnOk() throws Exception {
-        final String credentials = """
+    void whenValidationSucceedsThenReturnOk() throws Exception {
+        var person = """
                 {
                     "firstname": "gerrit",
                     "lastname": "secret",
@@ -58,7 +58,7 @@ class EchoControllerTest {
                 """;
         mockMvc.perform(post("/echo")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(credentials))
+                        .content(person))
                 .andExpect(status().isOk());
     }
 
@@ -83,11 +83,14 @@ class EchoControllerTest {
                     }
                     """
     })
-    void whenValidationFailsShouldReturnBadRequest(String credentials, CapturedOutput output) throws Exception {
+    void whenValidationFailsThenReturnBadRequest(String person, CapturedOutput output) throws Exception {
         mockMvc.perform(post("/echo")
+                        // .header("Accept-Language", "de-DE")
+                        // .header("Accept-Language", "it-IT")
+                        // .header("Accept-Language", "en-US")
                         .accept(MediaType.APPLICATION_JSON_VALUE)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(credentials))
+                        .content(person))
                 .andExpect(status().isBadRequest());
     }
 
